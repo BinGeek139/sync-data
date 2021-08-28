@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Component("messageHandlerReal")
@@ -25,7 +26,7 @@ public class MessageHandlerReal implements MessageHandler {
         Class<?> clazz = (Class<?>) classHandler;
         if(Objects.nonNull(classHandler)){
            HandlerListener handlerListener=(HandlerListener) applicationContext.getBean(clazz);
-           handlerListener.execute(message.getData().toString());
+           handlerListener.execute((Map) message.getData());
         }
     }
 
