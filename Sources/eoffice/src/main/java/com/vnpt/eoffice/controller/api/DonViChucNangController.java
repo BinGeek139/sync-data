@@ -45,7 +45,7 @@ public class DonViChucNangController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<ResponseBody> insert(@RequestBody DonViChucNangDTO dvcn, Model model) {
+	public ResponseEntity<ResponseBody> insert(@RequestBody DonViChucNangDTO dvcn) {
 		donvichucnang.insert(dvcn);
 		publicData.postForObject(new Message(
 				ApiSynchronized.CHUC_VU_CREATE.name(),

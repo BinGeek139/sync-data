@@ -34,7 +34,7 @@ public class ChucVuImpl implements IChucVuService {
 	@Override
 	public void delete(Integer id, Integer version) {
 		Chucvu entity = new Chucvu();
-		entity = repo.getOneByPkAndVersion(id, version);
+		entity = repo.getOne(id);
 		if (entity == null) {
 			throw new OptimisticLockingFailureException(
 					"Concurrent update error");

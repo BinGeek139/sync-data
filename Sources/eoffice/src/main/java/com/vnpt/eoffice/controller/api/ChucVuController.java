@@ -25,8 +25,8 @@ public class ChucVuController {
 	PublicData publicData;
 
 	@RequestMapping(value = "/delete/{pK}", method = RequestMethod.DELETE)
-	public ResponseEntity<ResponseBody> delete(@PathVariable Integer pK, @RequestParam(value = "version") Integer version) {
-		chucvu.delete(pK, version);
+	public ResponseEntity<ResponseBody> delete(@PathVariable Integer pK) {
+		chucvu.delete(pK);
 		publicData.postForObject(new Message(
 				ApiSynchronized.CHUC_VU_DELETE.name(),
 				Const.CURRENT_SERVICE_NAME,
@@ -52,14 +52,11 @@ public class ChucVuController {
 	ApplicationContext applicationContext;
 	@PostMapping("/add")
 	public ResponseEntity<ResponseBody> insert(@RequestBody ChucVuDTO cv) {
-//		chucvu.insert(cv);
-//		publicData.postForObject(new Message(
-//				ApiSynchronized.CHUC_VU_CREATE.name(),
-//				Const.CURRENT_SERVICE_NAME,
-//				cv
-//		));
-		messageHandler.handler(new Message(ApiSynchronized.CHUC_VU_CREATE.name(),"dfsafds",
-				new Gson().toJson(cv)
+		chucvu.insert(cv);
+		publicData.postForObject(new Message(
+				ApiSynchronized.CHUC_VU_CREATE.name(),
+				Const.CURRENT_SERVICE_NAME,
+				cv
 		));
 		 return ResponseEntity.ok(ResponseBody.ofSuccess());
 	}

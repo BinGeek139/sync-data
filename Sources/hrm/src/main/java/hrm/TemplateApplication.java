@@ -9,6 +9,7 @@ import hrm.base.config.EnvConst;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -21,6 +22,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication()
 @EnableTransactionManagement
 public class TemplateApplication {
+    @Value("${kafka.url}")
+    String url;
 
     @Bean
     public DozerBeanMapper mapper() {
@@ -43,7 +46,7 @@ public class TemplateApplication {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "13.212.194.110:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "13.212.49.3:9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

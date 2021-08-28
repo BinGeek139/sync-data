@@ -45,7 +45,7 @@ public class ChucVuController {
 		chucvu.insert(cv);
 		publicData.postForObject(Message.builder()
 				.data(cv)
-				.apiType(Const.CURRENT_SERVICE_NAME)
+				.serviceName(Const.CURRENT_SERVICE_NAME)
 				.apiType(ApiSynchronized.CHUC_VU_CREATE.name())
 				.build());
 		return "chucvu";

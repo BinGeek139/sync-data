@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IChucVuService {
 	public ArrayList<ChucVuDTO> getAll();
 
-	void delete(Integer id, Integer version);
+	void delete(Integer id);
 
 	public ChucVuDTO getById(Integer id);
 

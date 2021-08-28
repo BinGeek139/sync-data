@@ -1,10 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 1234
-    url: jdbc:mysql://35.240.198.195:33306/eofice?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: menu
-
+    password: ${DATABASE_USERNAME:1234}
+    url: ${DATABASE_URL:jdbc:mysql://35.240.198.195:33306/eofice?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true}
+    username: ${DATABASE_PASSWORD:menu}
   jpa:
     show-sql: true
     hibernate:
@@ -26,3 +25,6 @@ app:
       - http://localhost:3000/oauth2/redirect
       - androidapp://oauth2/redirect
       - iosapp://oauth2/redirect
+kafka:
+    url: ${URL_KAFKA:13.212.49.3:9092}
+    url_producer: ${URL_PRODUCER:http://13.212.49.3:8080/publish}

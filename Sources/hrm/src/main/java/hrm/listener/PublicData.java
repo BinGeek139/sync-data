@@ -3,6 +3,7 @@ package hrm.listener;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @Component
 @Slf4j
 public class PublicData {
+    @Value("${kafka.url_producer}")
+    String url;
     @Autowired
     Gson gson;
     public void postForObject(Message message) {
@@ -24,8 +27,7 @@ public class PublicData {
         MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
         map.add("message", gson.toJson(message));
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-        ResponseEntity<String> response = new RestTemplate().postForEntity( "http://13.212.194.110:8080/publish", request , String.class );
+        ResponseEntity<String> response = new RestTemplate().postForEntity( url, request , String.class );
         log.info(response.toString());
     }
-
 }
