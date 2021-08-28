@@ -14,7 +14,7 @@
     <name>eoffice</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <jjwt.version>0.9.1</jjwt.version>
     </properties>
     <dependencies>

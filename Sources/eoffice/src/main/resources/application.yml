@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${DATABASE_USERNAME:1234}
+    password: ${DATABASE_PASSWORD:1234}
     url: ${DATABASE_URL:jdbc:mysql://35.240.198.195:33306/eofice?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true}
-    username: ${DATABASE_PASSWORD:menu}
+    username: ${DATABASE_USERNAME:menu}
   jpa:
     show-sql: true
     hibernate:
