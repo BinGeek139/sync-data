@@ -2,9 +2,6 @@ package com.vnpt.eoffice.service.impl;
 
 
 import com.vnpt.eoffice.config.GenericMapper;
-import com.vnpt.eoffice.controller.listener.ApiSynchronized;
-import com.vnpt.eoffice.controller.listener.Message;
-import com.vnpt.eoffice.controller.listener.PublicData;
 import com.vnpt.eoffice.domain.User;
 import com.vnpt.eoffice.domain.UserPrincipal;
 import com.vnpt.eoffice.repository.UserRepository;
@@ -19,7 +16,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,6 +58,8 @@ public class UserServiceImpl implements UserService {
         user.setRole(AuthoritiesConstants.CUSTOMER.getRole());
         user.setStatus(Const.StatusUser.ACTIVE);
         user.setUsername(signUpRequest.getUsername());
+        user.setEmail(signUpRequest.getUsername());
+        user.setCreatedBy("System");
         userRepository.save(user);
         SignUpResponse signUpResponse = new SignUpResponse(signUpRequest.getUsername());
         return signUpResponse;
@@ -81,7 +79,7 @@ public class UserServiceImpl implements UserService {
     public UserInfoResponse loginUser(LoginRequest loginRequest) {
         log.info("==> Login request" + loginRequest.toString());
         var authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmailOrPhone(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         log.info("Logging in with [{}]", authentication.getPrincipal());
         var token = tokenProvider.createToken(authentication);
@@ -93,9 +91,9 @@ public class UserServiceImpl implements UserService {
         }
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
         return UserInfoResponse.builder()
-                .accessToken(token)
-                .refreshToken(refreshToken)
-                .username(loginRequest.getEmailOrPhone())
+                .accessToken("Bearer "+token)
+                .refreshToken("Bearer "+refreshToken)
+                .username(loginRequest.getUsername())
                 .role(role)
                 .fullName(principal.getUser().getFullName())
                 .build();

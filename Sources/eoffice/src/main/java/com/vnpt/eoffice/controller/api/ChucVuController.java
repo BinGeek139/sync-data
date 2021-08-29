@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.vnpt.eoffice.controller.listener.*;
 import com.vnpt.eoffice.controller.response.ResponseBody;
 import com.vnpt.eoffice.dto.ChucVuDTO;
+import com.vnpt.eoffice.repository.IChucVuRepository;
 import com.vnpt.eoffice.service.IChucVuService;
 import com.vnpt.eoffice.util.Const;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 
 @RestController
-@RequestMapping("/chucVu")
+@RequestMapping("/common/chucVu")
 public class ChucVuController {
 	@Autowired
 	private IChucVuService chucvu;
@@ -46,10 +47,7 @@ public class ChucVuController {
 		));
 		 return ResponseEntity.ok(ResponseBody.ofSuccess());
 	}
-	@Autowired
-	MessageHandlerProxy messageHandler;
-	@Autowired
-	ApplicationContext applicationContext;
+
 	@PostMapping("/add")
 	public ResponseEntity<ResponseBody> insert(@RequestBody ChucVuDTO cv) {
 		chucvu.insert(cv);
@@ -60,4 +58,12 @@ public class ChucVuController {
 		));
 		 return ResponseEntity.ok(ResponseBody.ofSuccess());
 	}
+	@Autowired
+	IChucVuRepository iChucVuRepository;
+
+	@GetMapping
+	public ResponseEntity<ResponseBody> getAll(){
+		return  ResponseEntity.ok(ResponseBody.ofSuccess(iChucVuRepository.findAll()));
+	}
+
 }

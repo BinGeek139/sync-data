@@ -38,9 +38,6 @@ public class User extends AuditingAbstractEntity implements Serializable {
     @Column(name = "url_avatar")
     private String avatar;
 
-    @Column(name = "role")
-    private String role;
-
     @Column(name = "status", length = 1)
     private Integer status;
 
@@ -58,4 +55,11 @@ public class User extends AuditingAbstractEntity implements Serializable {
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+
+    private String role;
+
+    @Column(unique = true, nullable = true, length = 36)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    private String code;
 }

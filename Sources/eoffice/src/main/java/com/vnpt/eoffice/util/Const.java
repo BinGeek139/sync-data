@@ -71,4 +71,7 @@ public interface Const {
     }
 
     String CURRENT_SERVICE_NAME ="eoffice";
+    Integer DELETE=0;
+    Integer EXIST=1;
+
 }

@@ -91,10 +91,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                 .permitAll()
-                .antMatchers("/**", "/oauth2/**", "/user/me", "/test/**")
-                .permitAll();
-
-
+                .antMatchers("/common/**", "/oauth2/**", "/user/me", "/test/**")
+                .permitAll()
+                .anyRequest().authenticated();
 
         // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -13,11 +13,12 @@ public class LoaiVanBan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(unique = true)
     private String ten;
 
     private String moTa;
 
-    @OneToMany(mappedBy = "loaiVanBan")
+    @OneToMany(mappedBy = "loaiVanBan",cascade = CascadeType.ALL)
     List<VanBan> vanBans;
 
 

@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 @RestController
 @Slf4j
-@RequestMapping("auth")
+@RequestMapping("/common/auth")
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
@@ -38,13 +38,6 @@ public class UserController {
         var userInfoResponse = userService.loginUser(loginRequest);
         return ResponseEntity.ok(ResponseBody.ofSuccess(userInfoResponse));
     }
-
-//    @GetMapping("refresh-token")
-//    @LogAble
-//    public ResponseEntity<ResponseBody> getRefreshToken() {
-//        var refreshTokenResponse = userService.getRefreshToken();
-//        return ResponseEntity.ok(ResponseBody.ofSuccess(refreshTokenResponse));
-//    }
 
     @PostMapping("register")
     @LogAble

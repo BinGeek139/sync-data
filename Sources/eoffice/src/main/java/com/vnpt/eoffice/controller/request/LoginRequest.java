@@ -13,8 +13,8 @@ import java.io.Serializable;
 @Data
 @Builder
 public class LoginRequest implements Serializable {
-    @NotBlank(message = "Vui lòng nhập số  điện thoại hoặc email")
-    private String emailOrPhone;
+    @NotBlank(message = "Vui lòng nhập email")
+    private String username;
     @NotBlank(message = "Bạn chưa nhập mật khẩu")
     private String password;
 }

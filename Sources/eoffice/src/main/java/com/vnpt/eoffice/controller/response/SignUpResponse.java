@@ -12,5 +12,5 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ToString
 public class SignUpResponse {
-   private String emailOrPhoneNumber;
+   private String username;
 }
