@@ -1,15 +1,12 @@
 package hrm.listener;
 
-import hrm.listener.impl.AddAccountHandlerListener;
-import hrm.listener.impl.AddChucVuHandlerListener;
-import hrm.listener.impl.DeleteChuVuHandleListener;
-import hrm.listener.impl.UpdateChucVuHandlerListener;
+import hrm.listener.impl.*;
 
 import java.lang.reflect.Type;
 
 public enum ApiSynchronized {
     ADD_ACCOUNT(AddAccountHandlerListener.class),
-    RESET_PASS(null),
+    RESET_PASS(ResetPassHandlerListener.class),
     CHUC_VU_CREATE(AddChucVuHandlerListener.class),
     CHUC_VU_DELETE(DeleteChuVuHandleListener.class),
     CHUC_VU_UPDATE(UpdateChucVuHandlerListener.class),

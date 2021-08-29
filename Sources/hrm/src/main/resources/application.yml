@@ -21,7 +21,7 @@ springdoc:
   swagger-ui:
     disable-swagger-default-url: true
 server:
-  port: 3323
+  port: 8080
 kafka:
   url: ${URL_KAFKA:13.212.49.3:9092}
   url_producer: ${URL_PRODUCER:http://54.86.107.209:8080/publish}

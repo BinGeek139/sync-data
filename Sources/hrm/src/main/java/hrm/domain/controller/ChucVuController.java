@@ -1,15 +1,19 @@
 package hrm.domain.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import hrm.base.common.annotations.api.ApiCommonResponse;
 import hrm.domain.model.dto.ChucVuDTO;
+import hrm.domain.model.entity.Chucvu;
+import hrm.domain.repository.IChucVuRepository;
 import hrm.domain.service.IChucVuService;
 import hrm.listener.ApiSynchronized;
 import hrm.listener.Const;
 import hrm.listener.Message;
 import hrm.listener.PublicData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +53,13 @@ public class ChucVuController {
 				.apiType(ApiSynchronized.CHUC_VU_CREATE.name())
 				.build());
 		return "chucvu";
+	}
+
+	@Autowired
+	IChucVuRepository iChucVuRepository;
+
+	@GetMapping
+	public ResponseEntity<List<Chucvu>> getAll(){
+		return  ResponseEntity.ok(iChucVuRepository.findAll());
 	}
 }

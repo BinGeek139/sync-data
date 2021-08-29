@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.GenericGenerator;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -48,4 +49,9 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
+    @Column(unique = true, nullable = true, length = 36)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    private String code;
 }
