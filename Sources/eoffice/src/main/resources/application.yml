@@ -29,4 +29,4 @@ kafka:
     url: ${URL_KAFKA:13.212.49.3:9092}
     url_producer: ${URL_PRODUCER:http://13.212.49.3:8080/publish}
 server:
-  port: 8081
+  port: 3323
